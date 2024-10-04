@@ -79,8 +79,8 @@ def main():
         device_map={'': 'cuda:0'}
     )
 
-    image_directory = 'code/08_Jinheng/img'
-    output_directory = 'code/08_Jinheng/output'
+    image_directory = 'code/VLM4Building/img'
+    output_directory = 'code/VLM4Building/output'
     os.makedirs(output_directory, exist_ok=True)
     output_file = os.path.join(output_directory, 'molmo1b_responses.json')
 

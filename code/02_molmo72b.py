@@ -88,8 +88,8 @@ def main():
     
     models = [model_1, model_2]  # Add more models if needed
 
-    image_directory = 'code/08_Jinheng/img'
-    output_directory = 'code/08_Jinheng/output'
+    image_directory = 'code/VLM4Building/img'
+    output_directory = 'code/VLM4Building/output'
     os.makedirs(output_directory, exist_ok=True)
     output_file = os.path.join(output_directory, 'molmo72b_responses.json')
 
