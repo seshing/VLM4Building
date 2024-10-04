@@ -19,3 +19,8 @@ conda create -n molmo python=3.10
 ```sh
 pip install -r VLM4Building/requirements.txt
 ```
+
+### 3. Download image data
+```sh
+python3.10 VLM4Building/code/
+```
