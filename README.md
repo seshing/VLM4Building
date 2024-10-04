@@ -28,5 +28,5 @@ python3.10 VLM4Building/code/01_get_img_unzip.py
 
 ### 4. Run prediction
 ```sh
-python3.10 VLM4Building/code/01_get_img_unzip.py
+python3.10 VLM4Building/code/02_molmo72b.py
 ```
