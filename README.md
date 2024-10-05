@@ -26,7 +26,7 @@ pip install -r VLM4Building/requirements.txt
 python3.10 VLM4Building/code/01_get_img_unzip.py
 ```
 
-### 4. Run prediction
+### 4. Run prediction (with specify number of GPUs)
 ```sh
-python3.10 VLM4Building/code/02_molmo72b.py
+python3.10 VLM4Building/code/02_molmo72b.py --num_gpus 20
 ```
