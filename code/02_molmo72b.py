@@ -139,8 +139,11 @@ def main(num_gpus):
         p.join()
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="Process images using multiple GPUs")
+    parser.add_argument('--num_gpus', type=int, default=2, help="Number of GPUs to use")
+    args = parser.parse_args()
+    
     mp.set_start_method('spawn')
-    num_gpus = 2
     main(num_gpus)
 
 
