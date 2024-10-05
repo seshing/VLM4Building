@@ -6,6 +6,7 @@ from transformers import AutoModelForCausalLM, AutoProcessor, GenerationConfig
 from multiprocessing import Process, Queue, Manager
 import torch.multiprocessing as mp
 from tqdm import tqdm
+import argparse
 
 def update_json_file(data, file_path):
     try:
