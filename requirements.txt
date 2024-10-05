@@ -5,3 +5,4 @@ transformers==4.36.2
 torchvision
 einops
 accelerate
+argparse
