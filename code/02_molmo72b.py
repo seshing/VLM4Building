@@ -76,11 +76,11 @@ def process_images(gpu_id, image_queue, output_file, progress_dict):
             text=description_text + """
             Conclude the information into concise labels for each category using the following JSON format:
             {
-                "building_type": (choose from 'retail', 'transportation', 'office', 'education', 'hotel', 'roof', 'apartments', 'industrial', 'house', 'hospital', 'religious', 'other civic buildings', 'service', 'garage'),
+                "building_type": (choose from 'apartments', 'house','retail', 'office', 'hotel', 'industrial', 'religious', 'education', 'public', 'garage'),
+                "building_age": （a numeric value representing a 4-character year),
+                "floors": （a numeric number),
                 "construction_material": (choose from 'concrete', 'brick', 'steel', 'wood', 'other'),
-                "surface_material": (choose from 'tile', 'wood', 'concrete', 'metal', 'stone', 'glass', 'other'), if applicable,
-                "building_age": "numeric value representing a 4-character year",
-                "floors": "a numeric number"
+                "surface_material": (if applicable, choose from 'tile', 'wood', 'concrete', 'metal', 'stone', 'glass', 'other')
             }
             """
         )
