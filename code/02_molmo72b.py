@@ -101,7 +101,7 @@ def process_images(gpu_id, image_queue, output_file, progress_dict):
 
 def main(num_gpus):
     image_directory = 'code/VLM4Building/img'
-    output_directory = 'code/VLM4Building/output'
+    output_directory = 'code/VLM4Building/output/molmo72b'
     os.makedirs(output_directory, exist_ok=True)
     output_file = os.path.join(output_directory, 'molmo72b_responses.json')
 
