@@ -41,13 +41,13 @@ def process_image(image_name, image_directory, output_file, processor, model):
         images=[image],
         text=description_text + """
         Conclude the information into concise labels for each category using the following JSON format:
-        {
-            "building_function": (choose one option from: 'retail', 'transportation', 'office', 'education', 'hotel', 'roof', 'religious', 'apartments', 'industrial', 'house', 'hospital', 'other civic buildings', 'utility', 'garage'),
-            "construction_material": (choose one option from: 'concrete', 'brick', 'steel', 'wood', 'other'),
-            "surface_material": (choose one option from: 'tile', 'wood', 'concrete', 'metal', 'stone', 'glass', 'other'), if applicable,
-            "building_age": (numeric value representing a 4-character year),
-            "floors": (a numeric number)
-        }
+            {
+                "building_type": (choose one option from 'apartments', 'house','retail', 'office', 'hotel', 'industrial', 'religious', 'education', 'public', 'garage'),
+                "building_age": （a numeric value representing a 4-character year),
+                "floors": （a numeric number),
+                "construction_material": (choose one option from 'concrete', 'brick', 'steel', 'wood', 'other'),
+                "surface_material": (if applicable, choose one option from 'tile', 'wood', 'concrete', 'metal', 'stone', 'glass', 'other')
+            }
         """
     )
     inputs = {k: v.to(model.device).unsqueeze(0) for k, v in inputs.items()}
