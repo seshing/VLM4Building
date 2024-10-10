@@ -65,7 +65,7 @@ def process_image(image_name, image_directory, output_file, processor, model):
 
 def main():
     processor = AutoProcessor.from_pretrained(
-        'allenai/MolmoE-1B-0924',
+        'allenai/Molmo-7B-D-0924',
         trust_remote_code=True,
         torch_dtype='auto',
         device_map={'': 'cuda:0'}
@@ -73,14 +73,14 @@ def main():
     
     # Load multiple instances of the model
     model = AutoModelForCausalLM.from_pretrained(
-        'allenai/MolmoE-1B-0924',
+        'allenai/Molmo-7B-D-0924',
         trust_remote_code=True,
         torch_dtype='auto',
         device_map={'': 'cuda:0'}
     )
 
     image_directory = 'code/VLM4Building/img'
-    output_directory = 'code/VLM4Building/output'
+    output_directory = 'code/VLM4Building/output/molmo7b'
     os.makedirs(output_directory, exist_ok=True)
     output_file = os.path.join(output_directory, 'molmo1b_responses.json')
 
