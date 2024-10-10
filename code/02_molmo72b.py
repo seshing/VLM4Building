@@ -74,7 +74,7 @@ def process_images(gpu_id, image_queue, output_file, progress_dict):
         inputs = processor.process(
             images=[Image.open(full_image_path)],
             text=description_text + """
-            Conclude the above information into concise labels for each category using the following JSON format:
+            Conclude the information into concise labels for each category using the following JSON format:
             {
                 "building_type": (choose one option from 'apartments', 'house','retail', 'office', 'hotel', 'industrial', 'religious', 'education', 'public', 'garage'),
                 "building_age": （a numeric value representing a 4-character year),
