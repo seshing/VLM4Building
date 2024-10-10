@@ -20,7 +20,7 @@ conda activate molmo
 ```sh
 pip install -r VLM4Building/requirements.txt
 ```
-Detail setup see: https://huggingface.co/allenai/Molmo-7B-D-0924
+Detail setup see: [https://huggingface.co/allenai/Molmo-7B-D-0924](https://huggingface.co/allenai/Molmo-72B-0924)
 
 ### 3. Download image data
 ```sh
