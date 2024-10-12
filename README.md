@@ -28,6 +28,12 @@ python3.10 VLM4Building/code/01_get_img_unzip.py
 ```
 
 ### 4. Run prediction (with specify number of GPUs)
+Option1 (justify the model name by using ```allenai/Molmo-72B-0924``` or ```allenai/Molmo-7B-D-0924```):
+```sh
+python3.10 VLM4Building/code/03_molmo_multiprocess.py --model allenai/Molmo-72B-0924 --num_gpus 4
+```
+
+Option2:
 ```sh
 python3.10 VLM4Building/code/02_molmo72b.py --num_gpus 20
 ```
