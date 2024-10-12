@@ -12,12 +12,8 @@ from tqdm import tqdm
 import multiprocessing
 
 def process_images(gpu_id, image_files, model_name, image_directory, output_directory):
-    # Set the device
-    # device = f'cuda:{gpu_id}'
-    # torch.cuda.set_device(device)
-
     # Load model and tokenizer
-    path = f"/workspace/xiucheng/models/InternVL/{model_name}"
+    path = model_name
     device_map = split_model(model_name)
     model = AutoModel.from_pretrained(
         path, 
@@ -29,7 +25,8 @@ def process_images(gpu_id, image_files, model_name, image_directory, output_dire
     ).eval()
     tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
-    output_file = os.path.join(output_directory, f'responses_gpu{gpu_id}.json')
+    output_file1 = os.path.join(output_directory, f'responses1_gpu{gpu_id}.json')   
+    output_file2 = os.path.join(output_directory, f'responses2_gpu{gpu_id}.json')
     
     for image_name in tqdm(image_files, desc=f"Processing images on GPU {gpu_id}"):
         full_image_path = os.path.join(image_directory, image_name)
@@ -41,12 +38,23 @@ def process_images(gpu_id, image_files, model_name, image_directory, output_dire
             
             question = '<image>\n Describe this building, including building type, an estimated building age (in which year), primary building materials (construction material, surface material), and the total number of floors.'
             response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=None, return_history=True)
+            temp_result1 = {image_name: response}
+            update_json_file(temp_result1, output_file1)
             
-            question = """Conclude the information into concise labels for each category using the following JSON format: { "building_type": (choose one option from: 'apartments', 'house','retail', 'office', 'hotel', 'industrial', 'religious', 'education', 'public', 'garage'), "building_age": (a numeric value representing a 4-character year), "floors": (a numeric number), "construction_material": (choose one option from: 'concrete', 'brick', 'steel', 'wood', 'other'), "surface_material": (if applicable, choose one option from: 'tile', 'wood', 'concrete', 'metal', 'stone', 'glass', 'other') } """
+            question = """
+            Conclude the information into concise labels for each category using the following JSON format:
+            {
+                "building_type": (choose one option from: 'apartments', 'house','retail', 'office', 'hotel', 'industrial', 'religious', 'education', 'public', 'garage'),
+                "building_age": (a numeric value representing a 4-character year),
+                "floors": (a numeric number),
+                "construction_material": (choose one option from: 'concrete', 'brick', 'steel', 'wood', 'other'),
+                "surface_material": (if applicable, choose one option from: 'tile', 'wood', 'concrete', 'metal', 'stone', 'glass', 'other')
+            }
+            """
             response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=history, return_history=True)
             
-            temp_result = {image_name: response}
-            update_json_file(temp_result, output_file)
+            temp_result2 = {image_name: response}
+            update_json_file(temp_result2, output_file2)
         else:
             print(f"Skipping {image_name}, image could not be loaded.")
 
@@ -57,8 +65,9 @@ def main():
     args = parser.parse_args()
     
     model_name = args.model
-    image_directory = f'/workspace/xiucheng/output/01_building_img/selection_1009'
-    output_directory = f'/workspace/xiucheng/output/05_testset/{model_name}'
+    image_directory = 'code/VLM4Building/img'
+    model_output_name = model_name.split('/')[-1]
+    output_directory = f'code/VLM4Building/output/{model_output_name}'
     os.makedirs(output_directory, exist_ok=True)
 
     num_gpus = args.num_gpus
