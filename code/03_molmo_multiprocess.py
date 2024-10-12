@@ -103,8 +103,9 @@ def main():
     args = parser.parse_args()
 
     model_name = args.model
-    image_directory = '/workspace/xiucheng/output/01_building_img/validate_dataset'
-    output_directory = '/workspace/xiucheng/output/05_testset/01_molmo7b/test'
+    image_directory = 'code/VLM4Building/img'
+    model_output_name = model_name.split('/')[-1]
+    output_directory = f'code/VLM4Building/output/{model_output_name}'
     os.makedirs(output_directory, exist_ok=True)
 
     num_gpus = args.num_gpus
