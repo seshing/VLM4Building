@@ -48,7 +48,7 @@ def process_images(gpu_id, image_files, model_name, image_directory, output_dire
         inputs = processor.process(
             images=[Image.open(full_image_path)],
             text="""
-            Analyze the building shown in the image and provide a detailed description of its architectural features. Then, describe the building type, the building's age (by specifying an approximate construction year), the primary facade material (the main material visible on the building's surface), and the total number of floors in the building.
+            Analyze the building shown in the image and provide a detailed description of its architectural features. Then, describe the building type, the building's age (by specifying an approximate construction year), the primary facade material (the main material visible on the building's surface), the construction material, and the total number of floors in the building.
             """
         )
 
@@ -77,7 +77,9 @@ def process_images(gpu_id, image_files, model_name, image_directory, output_dire
                 "building_age": "(a 4-digit year indicating the approximate construction date of the building)",
                 "floors": "(a numeric value representing the total number of floors)",
                 "surface_material": "(choose one option from: 'brick', 'wood', 'concrete', 'metal', 'stone', 'glass', 'plaster')",
-                "alternate_surface_material": "(choose another option from: 'brick', 'wood', 'concrete', 'metal', 'stone', 'glass', 'plaster')"
+                "alternate_surface_material": "(choose another option from: 'brick', 'wood', 'concrete', 'metal', 'stone', 'glass', 'plaster')",
+                "construction_material": "(choose one option from: 'brick', 'wood', 'concrete', 'steel', 'other')",
+                "alternate_construction_material": "(choose another option from: 'brick', 'wood', 'concrete', 'steel', 'other')"
             }
             """
         )
@@ -100,7 +102,7 @@ def process_images(gpu_id, image_files, model_name, image_directory, output_dire
 def main():
     parser = argparse.ArgumentParser(description="Process images using multiple GPUs.")
     parser.add_argument('--num_gpus', type=int, default=1, help="Number of GPUs to use")
-    parser.add_argument('--model', type=str, default='allenai/Molmo-72B-0924', help="VLM model used")
+    parser.add_argument('--model', type=str, default='allenai/Molmo-7B-D-0924', help="VLM model used")
     args = parser.parse_args()
 
     model_name = args.model
