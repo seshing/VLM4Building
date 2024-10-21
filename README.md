@@ -22,6 +22,7 @@ pip install -r VLM4Building/requirements.txt
 ```
 Detail setup see: https://huggingface.co/allenai/Molmo-72B-0924
 
+
 2. InternVL models:
 ```sh
 git clone https://github.com/OpenGVLab/InternVL.git
@@ -48,7 +49,8 @@ python3.10 VLM4Building/code/01_get_img_unzip.py
 python3.10 VLM4Building/code/03_molmo_multiprocess.py --model allenai/Molmo-72B-0924 --num_gpus 4
 ```
 
-InternVL models (justify the model name by using ```OpenGVLab/InternVL2-26B``` or ```OpenGVLab/InternVL2-40B```):
+
+2.InternVL models (justify the model name by using ```OpenGVLab/InternVL2-26B``` or ```OpenGVLab/InternVL2-40B```):
 ```sh
 python3.9 VLM4Building/code/03_molmo_multiprocess.py --model OpenGVLab/InternVL2-26B --num_gpus 4
 ```
