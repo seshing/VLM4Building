@@ -36,19 +36,22 @@ def process_images(gpu_id, image_files, model_name, image_directory, output_dire
             pixel_values = pixel_values.to(torch.bfloat16)
             generation_config = dict(max_new_tokens=1024, do_sample=False)
             
-            question = '<image>\n Describe this building, including building type, an estimated building age (in which year), primary building materials (construction material, surface material), and the total number of floors.'
+            question = '<image>\n Analyze the building shown in the image and provide a detailed description of its architectural features. Then, describe the building type, the building's age (by specifying an approximate construction year), the primary facade material (the main material visible on the building's surface), the construction material, and the total number of floors in the building.'
             response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=None, return_history=True)
             temp_result1 = {image_name: response}
             update_json_file(temp_result1, output_file1)
             
             question = """
-            Conclude the information into concise labels for each category using the following JSON format:
+            Based on the analysis of the building, provide concise labels for each category using the following JSON format. Select appropriate values from the provided options for each category:
             {
-                "building_type": (choose one option from: 'apartments', 'house','retail', 'office', 'hotel', 'industrial', 'religious', 'education', 'public', 'garage'),
-                "building_age": (a numeric value representing a 4-character year),
-                "floors": (a numeric number),
-                "construction_material": (choose one option from: 'concrete', 'brick', 'steel', 'wood', 'other'),
-                "surface_material": (if applicable, choose one option from: 'tile', 'wood', 'concrete', 'metal', 'stone', 'glass', 'other')
+                "building_type": "(choose one option from: 'apartments', 'house', 'retail', 'office', 'hotel', 'industrial', 'religious', 'education', 'public', 'garage')",
+                "alternate_building_type": "(choose another option from: 'apartments', 'house', 'retail', 'office', 'hotel', 'industrial', 'religious', 'education', 'public', 'garage')",
+                "building_age": "(a 4-digit year indicating the approximate construction date of the building)",
+                "floors": "(a numeric value representing the total number of floors)",
+                "surface_material": "(choose one option from: 'brick', 'wood', 'concrete', 'metal', 'stone', 'glass', 'plaster')",
+                "alternate_surface_material": "(choose another option from: 'brick', 'wood', 'concrete', 'metal', 'stone', 'glass', 'plaster')",
+                "construction_material": "(choose one option from: 'brick', 'wood', 'concrete', 'steel', 'other')",
+                "alternate_construction_material": "(choose another option from: 'brick', 'wood', 'concrete', 'steel', 'other')"
             }
             """
             response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=history, return_history=True)
