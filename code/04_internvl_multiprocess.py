@@ -74,7 +74,7 @@ def main():
     output_directory = f'code/VLM4Building/output/{model_output_name}'
     os.makedirs(output_directory, exist_ok=True)
 
-    test_df = pd.read_csv('/home/xiucheng/Data1/EnrichBuilding/data/00_final_dataset/csv/bd_all/test.csv')
+    test_df = pd.read_csv('code/VLM4Building/csv/test.csv')
     test_id = test_df['image_name'].tolist()
     
     num_gpus = args.num_gpus
