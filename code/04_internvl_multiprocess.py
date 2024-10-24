@@ -5,16 +5,17 @@ from transformers import AutoTokenizer, AutoModel
 import numpy as np
 import torchvision.transforms as T
 import json
+import pandas as pd
 import argparse
 from PIL import Image
 from torchvision.transforms.functional import InterpolationMode
 from tqdm import tqdm
 import multiprocessing
 
-def process_images(gpu_id, image_files, model_name, image_directory, output_directory):
+def process_images(gpu_id, image_files, model_name, model_output_name, image_directory, output_directory):
     # Load model and tokenizer
     path = model_name
-    device_map = split_model(model_name)
+    device_map = split_model(model_output_name)
     model = AutoModel.from_pretrained(
         path, 
         torch_dtype=torch.bfloat16, 
@@ -33,10 +34,10 @@ def process_images(gpu_id, image_files, model_name, image_directory, output_dire
         pixel_values = load_image(full_image_path, max_num=12)
         
         if pixel_values is not None:
-            pixel_values = pixel_values.to(torch.bfloat16)
+            pixel_values = pixel_values.to(torch.bfloat16).cuda()
             generation_config = dict(max_new_tokens=1024, do_sample=False)
             
-            question = '<image>\n Analyze the building shown in the image and provide a detailed description of its architectural features. Then, describe the building type, the building's age (by specifying an approximate construction year), the primary facade material (the main material visible on the building's surface), the construction material, and the total number of floors in the building.'
+            question = """<image>\n Analyze the building shown in the image and provide a detailed description of its architectural features. Then, describe the building type, the building's age (by specifying an approximate construction year), the primary facade material (the main material visible on the building's surface), the construction material, and the total number of floors in the building."""
             response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=None, return_history=True)
             temp_result1 = {image_name: response}
             update_json_file(temp_result1, output_file1)
@@ -63,8 +64,8 @@ def process_images(gpu_id, image_files, model_name, image_directory, output_dire
 
 def main():
     parser = argparse.ArgumentParser(description="Process images using multiple GPUs.")
-    parser.add_argument('--num_gpus', type=int, default=2, help="Number of GPUs to use")
-    parser.add_argument('--model', type=str, default='OpenGVLab/InternVL2-26B', help="VLM model used")
+    parser.add_argument('--num_gpus', type=int, default=1, help="Number of GPUs to use")
+    parser.add_argument('--model', type=str, default='OpenGVLab/InternVL2-2B', help="VLM model used")
     args = parser.parse_args()
     
     model_name = args.model
@@ -73,8 +74,12 @@ def main():
     output_directory = f'code/VLM4Building/output/{model_output_name}'
     os.makedirs(output_directory, exist_ok=True)
 
+    test_df = pd.read_csv('/home/xiucheng/Data1/EnrichBuilding/data/00_final_dataset/csv/bd_all/test.csv')
+    test_id = test_df['image_name'].tolist()
+    
     num_gpus = args.num_gpus
     all_image_files = [img for img in os.listdir(image_directory) if img.endswith((".jpg", ".jpeg", ".png"))]
+    all_image_files = [img for img in all_image_files if img in test_id]
     
     # Check for already processed images
     processed_images = set()
@@ -98,7 +103,7 @@ def main():
     # Create and start processes
     processes = []
     for i in range(num_gpus):
-        p = multiprocessing.Process(target=process_images, args=(i, image_files_split[i], model_name, image_directory, output_directory))
+        p = multiprocessing.Process(target=process_images, args=(i, image_files_split[i], model_name, model_output_name, image_directory, output_directory))
         processes.append(p)
         p.start()
 
