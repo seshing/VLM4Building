@@ -64,8 +64,8 @@ def process_images(gpu_id, image_files, model_name, model_output_name, image_dir
 
 def main():
     parser = argparse.ArgumentParser(description="Process images using multiple GPUs.")
-    parser.add_argument('--num_gpus', type=int, default=1, help="Number of GPUs to use")
-    parser.add_argument('--model', type=str, default='OpenGVLab/InternVL2-2B', help="VLM model used")
+    parser.add_argument('--num_gpus', type=int, default=2, help="Number of GPUs to use")
+    parser.add_argument('--model', type=str, default='OpenGVLab/InternVL2-26B', help="VLM model used")
     args = parser.parse_args()
     
     model_name = args.model
