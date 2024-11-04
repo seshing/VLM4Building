@@ -84,19 +84,25 @@ pip install -r requirements.txt
 pip install flash-attn==2.3.6 --no-build-isolation
 pip install -r requirements/clip_benchmark.txt
 ```
+
 Detail setup see: https://internvl.readthedocs.io/en/latest/get_started/installation.html
 
-### 4. Adjust path for trainning
-InternVL models:
+### 4. Adjust data path for trainning
+1. download pretained model
 ```sh
-mkdir VLM4Building/models
-cd VLM4Building/models
-git clone https://github.com/OpenGVLab/InternVL.git
+cd VLM4Building/models/InternVL/internvl_chat
+mkdir pretrained
+cd pretrained
+
+# pip install -U huggingface_hub
+# Download OpenGVLab/InternVL2-8B
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL2-8B --local-dir InternVL2-8B
 ```
 
+2. Adjust following settings for .sh file VLM4Building/models/InternVL/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_8b_internlm2_7b_dynamic_res_2nd_finetune_lora.sh:
 ```sh
-conda create -n internvl python=3.9 -y
-conda activate internvl
+OUTPUT_DIR= '../InternVL2-8B-finetune'
+--meta_path "../../data/json/internvl_1_2_finetune_custom.json" \
 ```
 
 ```sh
