@@ -88,7 +88,12 @@ pip install -r requirements/clip_benchmark.txt
 Detail setup see: https://internvl.readthedocs.io/en/latest/get_started/installation.html
 
 ### 4. Adjust data path for trainning
-1. download pretained model
+1. Download .jsonl file:
+```sh
+wget -P VLM4Building/data/jsonl https://huggingface.co/datasets/seshing/buildingdataset/resolve/main/jsonl/train_1029.jsonl
+```
+
+2. download pretained model
 ```sh
 cd VLM4Building/models/InternVL/internvl_chat
 mkdir pretrained
