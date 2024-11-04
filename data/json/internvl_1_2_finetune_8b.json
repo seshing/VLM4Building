@@ -1,9 +1,0 @@
-{
-  "buildingfacade": {
-    "root": "../../../img",
-    "annotation": "../../../data/jsonl/train_1029.jsonl",
-    "data_augment": false,
-    "repeat_time": 1,
-    "length": 19822
-  }
-}
