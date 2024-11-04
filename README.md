@@ -102,7 +102,7 @@ huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGV
 2. Adjust following settings for .sh file VLM4Building/models/InternVL/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_8b_internlm2_7b_dynamic_res_2nd_finetune_lora.sh:
 ```sh
 OUTPUT_DIR= '../InternVL2-8B-finetune'
---meta_path "../../../data/json/internvl_1_2_finetune_custom.json" \
+--meta_path "../../../data/json/internvl_1_2_finetune_8b.json" \
 ```
 
 3. Run finetuning: 
