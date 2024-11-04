@@ -86,3 +86,23 @@ pip install -r requirements/clip_benchmark.txt
 ```
 Detail setup see: https://internvl.readthedocs.io/en/latest/get_started/installation.html
 
+### 4. Adjust path for trainning
+InternVL models:
+```sh
+mkdir VLM4Building/models
+cd VLM4Building/models
+git clone https://github.com/OpenGVLab/InternVL.git
+```
+
+```sh
+conda create -n internvl python=3.9 -y
+conda activate internvl
+```
+
+```sh
+pip install -r requirements.txt
+pip install flash-attn==2.3.6 --no-build-isolation
+pip install -r requirements/clip_benchmark.txt
+```
+Detail setup see: https://internvl.readthedocs.io/en/latest/get_started/installation.html
+
