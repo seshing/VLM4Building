@@ -51,7 +51,9 @@ python3.10 VLM4Building/code/03_molmo_multiprocess.py --model allenai/Molmo-72B-
 python3.9 VLM4Building/code/03_molmo_multiprocess.py --model OpenGVLab/InternVL2-26B --num_gpus 4
 ```
 
-/n
+
+
+  
 ## Finetune InternVL
 
 ### 1. Clone the Repository
