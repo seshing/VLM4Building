@@ -32,7 +32,7 @@ def unzip_file(zip_path, extract_dir):
 # Define the URL, output zip file path, and extraction directory
 url = "https://huggingface.co/datasets/seshing/buildingdataset/resolve/main/building_dataset.zip"
 output_zip_path = "building_dataset.zip"
-extract_dir = "code/VLM4Building"
+extract_dir = "VLM4Building/"
 
 if __name__ == "__main__":
     # Step 1: Download the file
