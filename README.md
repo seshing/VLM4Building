@@ -53,7 +53,7 @@ cd internvl_chat
 GPUS=10 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl2.0/2nd_finetune/internvl2_8b_internlm2_7b_dynamic_res_2nd_finetune_full_building.sh
 ```
 
-### 4. Evaluating
+### 5. Evaluating
 1. Copy python files from original ```InternVL2_5-8B``` floder to the finetuned model directory:
 ```sh
 cd VLM4Building
