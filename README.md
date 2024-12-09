@@ -54,7 +54,7 @@ GPUS=10 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl2.0/2nd_finetune/internvl2_8b_i
 ```
 
 ### 4. Evaluating
-1. Copy python files from original InternVL2_5-8B to the finetuned model directory:
+1. Copy python files from original ```InternVL2_5-8B``` floder to the finetuned model directory:
 ```sh
 cd VLM4Building
 cp models/InternVL/InternVL2_5-8B/*.py /path/to/new/finetuned/model/
