@@ -30,8 +30,8 @@ def unzip_file(zip_path, extract_dir):
     print(f"Extracted files to {extract_dir}")
 
 # Define the URL, output zip file path, and extraction directory
-url = "https://huggingface.co/datasets/seshing/buildingdataset/resolve/main/img.zip"
-output_zip_path = "img.zip"
+url = "https://huggingface.co/datasets/seshing/buildingdataset/resolve/main/building_dataset.zip"
+output_zip_path = "building_dataset.zip"
 extract_dir = "code/VLM4Building"
 
 if __name__ == "__main__":
