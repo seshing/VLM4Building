@@ -45,7 +45,7 @@ pip install -U huggingface_hub
 huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL2_5-8B --local-dir InternVL2_5-8B
 ```
 
-2. Open file in code/adjust_internvl_ft_scripts.py to adjust and update parameters for finetuning .sh file.
+2. Open file in ```code/adjust_internvl_ft_scripts.py``` to adjust and update parameters for finetuning .sh file.
 
 3. Run finetuning (insert the directory of the updated .sh file): 
 ```sh
