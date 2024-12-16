@@ -51,12 +51,13 @@ sh_dir = 'models/InternVL/internvl_chat/shell/internvl2.0/2nd_finetune'
 # sh_dir = os.path.join(chdir, sh_dir)
 
 adjust_train_epochs = 3
-adjust_learning_rate = 4e-5 # Defualt 4e-5
-adjust_freeze_backbone = False
+adjust_learning_rate = 2e-5 # Defualt 4e-5
+adjust_freeze_backbone = False 
 freeze_mode = 'unfreeze' if not adjust_freeze_backbone else 'freeze'
 
+# 模型保存的位置
 adjust_OUTPUT_DIR = f'models/InternVL/internvl2_finetune/internvl2_5_8b_{adjust_train_epochs}e_{adjust_learning_rate}_1G1O_{freeze_mode}_{mode}'
-adjust_model_path = "models/InternVL/InternVL2_5-8B"
+adjust_model_path = "models/InternVL/InternVL2_5-8B" # 下载的pretrain模型的位置
 adjust_meta_path = 'models/InternVL/internvl_chat/shell/data/internvl_1_2_finetune_building.json'
 
 
@@ -90,13 +91,11 @@ filedata = filedata.replace(
 )
 
 filedata = filedata.replace(
-    '--model_name_or_path "./pretrained/InternVL2-2B" \\',
+    '--model_name_or_path "./pretrained/InternVL2-8B" \\',
     f'--model_name_or_path "{adjust_model_path}" \\'
 )
 
 
 with open(os.path.join(sh_dir, save_file), 'w') as file:
     file.write(filedata)
-    # with open('internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_full_building.sh', 'w') as new_file:
-    #     new_file.write(filedata)
 
