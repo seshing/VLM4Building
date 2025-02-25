@@ -1,7 +1,20 @@
 # VLM4Building
 
-## Finetune InternVL
 
+## Inference global dataset
+### 1. Clone the Repository
+```sh
+git clone https://github.com/seshing/VLM4Building.git
+pip install -r VLM4Building/requirements.txt
+```
+### 2. Download image data and model
+```sh
+python VLM4Building/code/01_get_img_unzip_global.py
+```
+
+
+
+## Finetune InternVL
 ### 1. Clone the Repository
 
 ```sh
