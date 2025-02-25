@@ -44,6 +44,6 @@ if __name__ == "__main__":
         unzip_file(output_zip_path, extract_dir)
     # # Step 3: Download the model repository
     model_path = snapshot_download(repo_id="seshing/internvl_buildingfacades",
-                                 local_dir="VLM4Building/internvl2_5-2b-finetune",
+                                 local_dir="VLM4Building/model/internvl2_5-2b-finetune",
                                  token=None)  # Add your token if the repo is private
     print(f"Model downloaded to: {model_path}")
