@@ -7,13 +7,15 @@
 git clone https://github.com/seshing/VLM4Building.git
 pip install -r VLM4Building/requirements.txt
 ```
+
 ### 2. Download image data and model
 ```sh
 python VLM4Building/code/01_get_img_unzip_global.py
 ```
-Model:
+
+### 3. Run inference
 ```sh
-python VLM4Building/code/01_get_img_unzip_global.py
+python3.9 code/05_internvl_predict_final.py --model model/internvl2_5-2b-finetune --num_gpus 8
 ```
 
 ## Finetune InternVL
