@@ -11,8 +11,10 @@ pip install -r VLM4Building/requirements.txt
 ```sh
 python VLM4Building/code/01_get_img_unzip_global.py
 ```
-
-
+Model:
+```sh
+python VLM4Building/code/01_get_img_unzip_global.py
+```
 
 ## Finetune InternVL
 ### 1. Clone the Repository
