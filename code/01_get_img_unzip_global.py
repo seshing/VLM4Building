@@ -32,8 +32,8 @@ def unzip_file(zip_path, extract_dir):
 
 # Define the URL, output zip file path, and extraction directory
 urls = [
-    ("https://huggingface.co/datasets/seshing/buildingfacade/resolve/main/Berlin.zip", "VLM4Building/Berlin.zip", "VLM4Building/"),
-    ("https://huggingface.co/datasets/seshing/buildingfacade/resolve/main/Manila.zip", "VLM4Building/Manila.zip", "VLM4Building/")
+    ("https://huggingface.co/datasets/seshing/buildingfacade/resolve/main/Berlin.zip", "VLM4Building/Berlin.zip", "VLM4Building/")
+    # ("https://huggingface.co/datasets/seshing/buildingfacade/resolve/main/Manila.zip", "VLM4Building/Manila.zip", "VLM4Building/")
 ]
 
 if __name__ == "__main__":
